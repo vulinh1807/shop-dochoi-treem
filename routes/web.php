@@ -35,7 +35,7 @@ Route::group(['prefix'=>'admin','middleware'=>['role:admin']],function(){
 
 
 //Frontend 
-Route::get('/','HomeController@index');
+Route::post('/','HomeController@index');
 //Route::get('/','HomeController@index');
 
 Route::post('/load-more-product','HomeController@load_more_product' );
