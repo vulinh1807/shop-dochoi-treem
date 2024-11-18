@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
     /*
     |--------------------------------------------------------------------------
@@ -35,10 +36,10 @@ Route::group(['prefix'=>'admin','middleware'=>['role:admin']],function(){
 
 
 //Frontend 
-Route::post('/','HomeController@index');
-//Route::get('/','HomeController@index');
-
-Route::post('/load-more-product','HomeController@load_more_product' );
+//Route::post('/','HomeController@index');
+Route::get('/',[HomeController::class,'index']);
+//Route::post('/load-more-product','HomeController@load_more_product' );
+Route::post('/load-more-product',[HomeController::class,'load_more_product']);
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
 Route::get('/show-quick-cart','CartController@show_quick_cart' );
 Route::get('/404','HomeController@error_page');
@@ -94,12 +95,9 @@ Route::post('/insert-rating','ProductController@insert_rating');
 Route::post('/uploads-ckeditor','ProductController@ckeditor_image');
 Route::get('/file-browser','ProductController@file_browser');
 
-
 //Bai viet
 Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
 Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
-
-
 
 //Brand Product
 Route::get('/add-brand-product','BrandProduct@add_brand_product');
@@ -110,7 +108,6 @@ Route::get('/unactive-brand-product/{brand_product_id}','BrandProduct@unactive_b
 Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand_product');
 Route::post('/save-brand-product','BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
-
 
 //Category Product
 Route::get('/add-category-product','CategoryProduct@add_category_product');
@@ -124,25 +121,21 @@ Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@u
 Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 Route::post('/product-tabs','CategoryProduct@product_tabs');
 
-
 //Login facebook
 Route::get('/login-facebook','AdminController@login_facebook');
 Route::get('/admin/callback','AdminController@callback_facebook');
 Route::get('/login-facebook-customer','AdminController@login_facebook_customer');
 Route::get('/customer/facebook/callback','AdminController@callback_facebook_customer');
 
-
 //Login google
 Route::post('/login-google','AdminController@login_google');
 Route::post('/google/callback','AdminController@callback_google');
-
 
 //login customer by google
 Route::post('/login-customer-google','AdminController@login_customer_google');
 Route::post('/customer/google/callback','AdminController@callback_customer_google');
 Route::post('/save-category-product','CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}','CategoryProduct@update_category_product');
-
 
 //Category Post
 Route::get('/add-category-post','CategoryPost@add_category_post');
@@ -152,7 +145,6 @@ Route::post('/save-category-post','CategoryPost@save_category_post');
 Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
 Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post');
 
-
 //Post
 Route::get('/add-post','PostController@add_post');
 Route::get('/all-post','PostController@all_post');
@@ -160,7 +152,6 @@ Route::get('/delete-post/{post_id}','PostController@delete_post');
 Route::get('/edit-post/{post_id}','PostController@edit_post');
 Route::post('/save-post','PostController@save_post');
 Route::post('/update-post/{post_id}','PostController@update_post');
-
 
 //Product
 Route::get('/add-product','ProductController@add_product');
@@ -181,7 +172,6 @@ Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::post('/delete-document','ProductController@delete_document');
 Route::get('/gg-document','ProductController@gg_document');
 
-
 //Coupon
 Route::post('/check-coupon','CartController@check_coupon');
 Route::get('/unset-coupon','CouponController@unset_coupon');
@@ -189,7 +179,6 @@ Route::get('/insert-coupon','CouponController@insert_coupon');
 Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
 Route::get('/list-coupon','CouponController@list_coupon');
 Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
-
 
 //Cart
 Route::post('/update-cart-quantity','CartController@update_cart_quantity');
